@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Remix: Matrix Lite v4 - Mạt Thế Tân Sinh 28/6/2026",
+  "description": "Matrix x Annie dấu\u003c3",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

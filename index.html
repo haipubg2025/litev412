@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matrix Lite v4 - Mạt Thế Tân Sinh</title>
+    <script>
+      // --- Console Shield: Chặn các thông báo rác từ hệ thống/trình duyệt ngay lập tức ---
+      (function() {
+        const suppressedKeywords = [
+          'Origin trial',
+          'language-model',
+          'writer',
+          'rewriter',
+          'proofreader',
+          'preloaded using link preload but not used',
+          'Unrecognized feature',
+          'Mixed Content',
+          '[vite] connecting...',
+          'modules transformed.',
+          'Use of eval in',
+          'rendering chunks...',
+          'computing gzip size...',
+          'dist/index.html',
+          'dist/assets/',
+          'Some chunks are larger than',
+          'Using dynamic import()',
+          'Use build.rollupOptions.output.manualChunks',
+          'Adjust chunk size limit for this warning',
+          'built in',
+          'dist/server.cjs',
+          'dist/server.cjs.map',
+          'Done in',
+          'Build successful.',
+          'CONNECTED',
+          'Render Start',
+          'Render End',
+          'html2canvas',
+          'Failed to get brand type RpcError',
+          '[vite] failed to connect to websocket',
+          'WebSocket closed without opened',
+          'client:454 Uncaught'
+        ];
+
+        const filter = (args, originalFn) => {
+          const msg = args.map(arg => {
+            if (typeof arg === 'string') return arg;
+            if (arg instanceof Error) return arg.message + ' ' + arg.stack;
+            try {
+              return JSON.stringify(arg);
+            } catch {
+              return String(arg);
+            }
+          }).join(' ');
+          if (suppressedKeywords.some(keyword => msg.toLowerCase().includes(keyword.toLowerCase()))) {
+            return;
+          }
+          originalFn.apply(console, args);
+        };
+
+        const originalLog = console.log;
+        const originalWarn = console.warn;
+        const originalError = console.error;
+
+        console.log = (...args) => filter(args, originalLog);
+        console.warn = (...args) => filter(args, originalWarn);
+        console.error = (...args) => filter(args, originalError);
+        
+        // Bắt các Uncaught Error (ví dụ: SyntaxError từ script hệ thống)
+        window.addEventListener('error', function(event) {
+          if (event.filename && event.filename.includes('_aistudio-iframe.js')) {
+            event.preventDefault();
+            return true;
+          }
+          if (event.message && (event.message.includes('html2canvas') || event.message.includes('Unexpected token ') || event.message.includes('WebSocket'))) {
+            event.preventDefault();
+            return true;
+          }
+        }, true);
+
+        // Bắt các Uncaught Promise Rejection
+        window.addEventListener('unhandledrejection', function(event) {
+          if (event.reason && (
+               String(event.reason).includes('WebSocket closed') || 
+               String(event.reason).includes('Failed to get brand type RpcError') ||
+               String(event.reason).includes('html2canvas')
+             )) {
+            event.preventDefault();
+          }
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

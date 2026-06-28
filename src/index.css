@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+@layer components {
+  /* Dynamic Theme Panels */
+  .theme-panel {
+    @apply bg-[#FFFDFB]/95 border border-amber-200/90 shadow-[0_4px_12px_rgba(139,94,26,0.05)] backdrop-blur-xl;
+  }
+  .theme-panel-hover:hover {
+    @apply bg-[#FFFDFB] border-amber-300 shadow-[0_6px_16px_rgba(139,94,26,0.08)];
+  }
+  
+  /* Dynamic Theme Inputs */
+  .theme-input {
+    @apply bg-white border border-amber-200 text-[#3E2723] focus:border-blue-600 focus:ring-1 focus:ring-blue-500 placeholder:text-amber-800/40 shadow-xs outline-none transition-all;
+  }
+  .theme-input option {
+    @apply bg-[#FFFDFB] text-[#3E2723];
+  }
+
+  /* Dynamic Theme Base Text */
+  .theme-text-base {
+    @apply text-slate-950 transition-colors;
+  }
+
+  /* Dynamic Theme Buttons */
+  .theme-button {
+    @apply bg-blue-600 hover:bg-blue-700 border border-blue-700 text-white font-bold shadow-md shadow-blue-500/10 cursor-pointer transition-all active:scale-[0.98];
+  }
+
+  /* Dark Theme Overrides - Tone sur Tone Panels */
+  .dark-theme .theme-panel {
+    @apply shadow-none backdrop-blur-xl border border-white/10;
+  }
+  .dark-theme .theme-panel-hover:hover {
+    @apply shadow-none border-white/20;
+  }
+  .dark-theme .theme-input {
+    @apply bg-black/40 border border-white/5 text-white focus:border-white/20 placeholder:text-white/30 shadow-none;
+  }
+  .dark-theme .theme-input option {
+    @apply bg-black text-white;
+  }
+  .dark-theme .theme-text-base {
+    @apply text-white;
+  }
+  .dark-theme .theme-button {
+    @apply bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-white font-normal shadow-none;
+  }
+
+  /* Specific Tone sur tone panel backgrounds for each Dark Theme */
+  [data-theme="cyberpunk"] .theme-panel { background-color: rgba(5, 5, 5, 0.9); border-color: rgba(0, 255, 0, 0.15); }
+  [data-theme="cyberpunk"] .theme-panel-hover:hover { background-color: rgba(5, 5, 5, 1); border-color: rgba(0, 255, 0, 0.3); }
+
+  [data-theme="luxury"] .theme-panel { background-color: rgba(20, 20, 20, 0.9); border-color: rgba(202, 138, 4, 0.2); }
+  [data-theme="luxury"] .theme-panel-hover:hover { background-color: rgba(30, 30, 30, 0.95); border-color: rgba(202, 138, 4, 0.3); }
+
+  [data-theme="deepsea"] .theme-panel { background-color: rgba(0, 20, 40, 0.85); border-color: rgba(59, 130, 246, 0.2); }
+  [data-theme="deepsea"] .theme-panel-hover:hover { background-color: rgba(0, 30, 60, 0.9); border-color: rgba(59, 130, 246, 0.3); }
+
+  [data-theme="volcano"] .theme-panel { background-color: rgba(35, 0, 0, 0.9); border-color: rgba(239, 68, 68, 0.2); }
+  [data-theme="volcano"] .theme-panel-hover:hover { background-color: rgba(50, 0, 0, 0.95); border-color: rgba(239, 68, 68, 0.3); }
+
+  [data-theme="midnight"] .theme-panel { background-color: rgba(20, 0, 45, 0.9); border-color: rgba(168, 85, 247, 0.2); }
+  [data-theme="midnight"] .theme-panel-hover:hover { background-color: rgba(35, 0, 65, 0.95); border-color: rgba(168, 85, 247, 0.3); }
+
+  [data-theme="forest_night"] .theme-panel { background-color: rgba(4, 30, 20, 0.9); border-color: rgba(16, 185, 129, 0.2); }
+  [data-theme="forest_night"] .theme-panel-hover:hover { background-color: rgba(6, 45, 30, 0.95); border-color: rgba(16, 185, 129, 0.3); }
+
+  [data-theme="space"] .theme-panel { background-color: rgba(25, 35, 55, 0.9); border-color: rgba(148, 163, 184, 0.2); }
+  [data-theme="space"] .theme-panel-hover:hover { background-color: rgba(35, 45, 70, 0.95); border-color: rgba(148, 163, 184, 0.3); }
+
+  [data-theme="dracula"] .theme-panel { background-color: rgba(50, 55, 75, 0.9); border-color: rgba(255, 121, 198, 0.2); }
+  [data-theme="dracula"] .theme-panel-hover:hover { background-color: rgba(65, 70, 95, 0.95); border-color: rgba(255, 121, 198, 0.3); }
+
+  [data-theme="nordic_dark"] .theme-panel { background-color: rgba(30, 32, 34, 0.9); border-color: rgba(6, 182, 212, 0.2); }
+  [data-theme="nordic_dark"] .theme-panel-hover:hover { background-color: rgba(40, 42, 45, 0.95); border-color: rgba(6, 182, 212, 0.3); }
+
+  [data-theme="matrix"] .theme-panel { background-color: rgba(0, 15, 0, 0.9); border-color: rgba(0, 255, 65, 0.2); }
+  [data-theme="matrix"] .theme-panel-hover:hover { background-color: rgba(0, 25, 0, 0.95); border-color: rgba(0, 255, 65, 0.3); }
+
+  /* =========================================
+     NEW THEMES SPECIFIC STYLES
+     ========================================= */
+
+  /* GLASSMORPHISM */
+  [data-theme="glass_dark"] .theme-panel { background-color: rgba(255, 255, 255, 0.03) !important; border-color: rgba(255, 255, 255, 0.1) !important; backdrop-filter: blur(24px) !important; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5) !important; border-radius: 24px; }
+  [data-theme="glass_dark"] .theme-panel-hover:hover { background-color: rgba(255, 255, 255, 0.08) !important; border-color: rgba(255, 255, 255, 0.25) !important; }
+  
+  [data-theme="glass_light"] .theme-panel { background-color: rgba(255, 255, 255, 0.3) !important; border-color: rgba(255, 255, 255, 0.6) !important; backdrop-filter: blur(24px) !important; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1) !important; border-radius: 24px; }
+  [data-theme="glass_light"] .theme-panel-hover:hover { background-color: rgba(255, 255, 255, 0.5) !important; border-color: rgba(255, 255, 255, 0.9) !important; }
+
+  /* NEO-BRUTALISM */
+  [data-theme="brutal_dark"] .theme-panel { background-color: #1a1b1e !important; border: 3px solid #fff !important; box-shadow: 6px 6px 0 0 #fff !important; border-radius: 0 !important; }
+  [data-theme="brutal_dark"] .theme-panel-hover:hover { transform: translate(-2px, -2px) !important; box-shadow: 8px 8px 0 0 #fff !important; }
+  [data-theme="brutal_dark"] .theme-button { border-radius: 0 !important; border: 2px solid #fff !important; box-shadow: 4px 4px 0 0 #fff !important; background-color: transparent !important; }
+  [data-theme="brutal_dark"] .theme-button:active { transform: translate(2px, 2px) !important; box-shadow: 2px 2px 0 0 #fff !important; }
+  [data-theme="brutal_dark"] .theme-input { border-radius: 0 !important; border: 2px solid #fff !important; box-shadow: 3px 3px 0 0 #fff !important; background-color: #000 !important; }
+
+  [data-theme="brutal_light"] .theme-panel { background-color: #fff !important; border: 3px solid #000 !important; box-shadow: 6px 6px 0 0 #000 !important; border-radius: 0 !important; }
+  [data-theme="brutal_light"] .theme-panel-hover:hover { transform: translate(-2px, -2px) !important; box-shadow: 8px 8px 0 0 #000 !important; }
+  [data-theme="brutal_light"] .theme-button { border-radius: 0 !important; border: 2px solid #000 !important; box-shadow: 4px 4px 0 0 #000 !important; background-color: #fff !important; color: #000 !important; }
+  [data-theme="brutal_light"] .theme-button:hover { background-color: #000 !important; color: #fff !important; }
+  [data-theme="brutal_light"] .theme-button:active { transform: translate(2px, 2px) !important; box-shadow: 2px 2px 0 0 #000 !important; }
+  [data-theme="brutal_light"] .theme-input { border-radius: 0 !important; border: 2px solid #000 !important; box-shadow: 3px 3px 0 0 #000 !important; background-color: #fff !important; }
+
+  /* NEUMORPHISM */
+  [data-theme="neumorphic_dark"] .theme-panel { background-color: #292b2d !important; border: none !important; box-shadow: 8px 8px 16px #1d1e20, -8px -8px 16px #35383a !important; border-radius: 20px; }
+  [data-theme="neumorphic_dark"] .theme-panel-hover:hover { box-shadow: inset 4px 4px 10px #1d1e20, inset -4px -4px 10px #35383a !important; }
+  [data-theme="neumorphic_dark"] .theme-button { background: #292b2d !important; box-shadow: 4px 4px 10px #1d1e20, -4px -4px 10px #35383a !important; border: none !important; }
+  [data-theme="neumorphic_dark"] .theme-button:active { box-shadow: inset 4px 4px 8px #1d1e20, inset -4px -4px 8px #35383a !important; }
+  [data-theme="neumorphic_dark"] .theme-input { background: #292b2d !important; box-shadow: inset 4px 4px 8px #1d1e20, inset -4px -4px 8px #35383a !important; border: none !important; }
+
+  [data-theme="neumorphic_light"] .theme-panel { background-color: #e0e5ec !important; border: none !important; box-shadow: 9px 9px 16px rgba(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.8) !important; border-radius: 20px; }
+  [data-theme="neumorphic_light"] .theme-panel-hover:hover { box-shadow: inset 5px 5px 10px rgba(163,177,198,0.6), inset -5px -5px 10px rgba(255,255,255, 0.8) !important; }
+  [data-theme="neumorphic_light"] .theme-button { background: #e0e5ec !important; box-shadow: 5px 5px 10px rgba(163,177,198,0.6), -5px -5px 10px rgba(255,255,255, 0.8) !important; border: none !important; color: #3b82f6 !important; }
+  [data-theme="neumorphic_light"] .theme-button:active { box-shadow: inset 4px 4px 8px rgba(163,177,198,0.6), inset -4px -4px 8px rgba(255,255,255, 0.8) !important; }
+  [data-theme="neumorphic_light"] .theme-input { background: #e0e5ec !important; box-shadow: inset 5px 5px 10px rgba(163,177,198,0.6), inset -5px -5px 10px rgba(255,255,255, 0.8) !important; border: none !important; }
+
+  /* AURORA */
+  [data-theme="aurora_dark"] { background: radial-gradient(circle at top right, rgba(168, 85, 247, 0.2), transparent 50%), radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.2), transparent 50%), #020617 !important; }
+  [data-theme="aurora_dark"] .theme-panel { background-color: rgba(15, 23, 42, 0.4) !important; border-color: rgba(255, 255, 255, 0.15) !important; backdrop-filter: blur(16px) !important; }
+  [data-theme="aurora_dark"] .theme-panel-hover:hover { background-color: rgba(15, 23, 42, 0.6) !important; border-color: rgba(232, 121, 249, 0.4) !important; }
+
+  [data-theme="aurora_light"] { background: radial-gradient(circle at top right, rgba(20, 184, 166, 0.15), transparent 50%), radial-gradient(circle at bottom left, rgba(99, 102, 241, 0.15), transparent 50%), #ffffff !important; }
+  [data-theme="aurora_light"] .theme-panel { background-color: rgba(255, 255, 255, 0.5) !important; border-color: rgba(255, 255, 255, 0.8) !important; backdrop-filter: blur(16px) !important; }
+  [data-theme="aurora_light"] .theme-panel-hover:hover { background-color: rgba(255, 255, 255, 0.7) !important; border-color: rgba(13, 148, 136, 0.4) !important; }
+
+  /* MESH GRADIENT */
+  [data-theme="mesh_dark"] { background: radial-gradient(at 40% 20%, rgba(245, 158, 11, 0.15) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(16, 185, 129, 0.15) 0px, transparent 50%), radial-gradient(at 0% 50%, rgba(239, 68, 68, 0.15) 0px, transparent 50%), #0f172a !important; }
+  [data-theme="mesh_dark"] .theme-panel { background-color: rgba(15, 23, 42, 0.5) !important; border-color: rgba(255, 255, 255, 0.1) !important; backdrop-filter: blur(12px) !important; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important; }
+  [data-theme="mesh_dark"] .theme-panel-hover:hover { background-color: rgba(15, 23, 42, 0.7) !important; border-color: rgba(251, 191, 36, 0.4) !important; }
+
+  [data-theme="mesh_light"] { background: radial-gradient(at 40% 20%, rgba(244, 63, 94, 0.1) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%), radial-gradient(at 0% 50%, rgba(139, 92, 246, 0.1) 0px, transparent 50%), #f8fafc !important; }
+  [data-theme="mesh_light"] .theme-panel { background-color: rgba(255, 255, 255, 0.5) !important; border-color: rgba(255, 255, 255, 0.8) !important; backdrop-filter: blur(12px) !important; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important; }
+  [data-theme="mesh_light"] .theme-panel-hover:hover { background-color: rgba(255, 255, 255, 0.8) !important; border-color: rgba(244, 63, 94, 0.4) !important; }
+}
+
+@layer utilities {
+  /* Global scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e3a8a; /* Dark blue */
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1e40af;
+  }
+
+  /* Custom scrollbar class */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #1e3a8a !important; /* Dark blue */
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #1e40af !important;
+  }
+
+  .markdown-body table {
+    @apply w-full border-collapse my-4 rounded-lg overflow-hidden ring-1 ring-black/10 dark:ring-white/10;
+  }
+  .markdown-body th {
+    @apply px-4 py-3 bg-black/5 dark:bg-white/5 font-semibold text-left border-b border-black/10 dark:border-white/10;
+  }
+  .markdown-body td {
+    @apply px-4 py-3 border-b border-black/10 dark:border-white/10;
+  }
+  .markdown-body blockquote {
+    @apply border-l-4 border-blue-500/50 bg-blue-500/5 dark:bg-blue-500/10 py-2 py-3 px-5 my-4 rounded-r-lg italic text-slate-700 dark:text-slate-300;
+  }
+  .markdown-body em {
+    @apply text-[#9333ea] font-medium italic;
+  }
+  .dark .markdown-body em,
+  .dark-theme .markdown-body em {
+    @apply text-[#d8b4fe];
+    text-shadow: 0 0 10px rgba(216, 180, 254, 0.2);
+  }
+  span[style*="color"] em {
+    color: inherit !important;
+  }
+
+  .dialogue-text {
+    @apply text-blue-700 font-medium;
+  }
+  .dark .dialogue-text,
+  .dark-theme .dialogue-text {
+    @apply text-blue-300;
+  }
+  span[style*="color"] .dialogue-text {
+    color: inherit !important;
+  }
+  .markdown-body ul {
+    @apply list-disc list-inside my-4 space-y-1;
+  }
+  .markdown-body ol {
+    @apply list-decimal list-inside my-4 space-y-1;
+  }
+  .markdown-body code {
+    @apply px-1.5 py-0.5 bg-black/10 dark:bg-white/10 rounded font-mono text-sm;
+  }
+  .markdown-body pre {
+    @apply bg-black/5 dark:bg-white/5 p-4 rounded-xl my-4 overflow-x-auto ring-1 ring-black/10 dark:ring-white/10 font-mono text-sm;
+  }
+  .markdown-body pre code {
+    @apply block bg-transparent p-0 w-full;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+}
